@@ -1,0 +1,425 @@
+[
+    {
+        "sku": "500100317",
+        "nome": "Racas Britanicas Peixinho Brasil Caba\u00f1a Las Lilas Grass Fed Congelado - 500100317",
+        "preco_kg_site": 40.99,
+        "preco_venda_kg": 81.98,
+        "peso_medio_caixa": 15.0,
+        "preco_caixa_venda": 1229.7,
+        "image_filename": "IMAGEM_INDISPONIVEL.png"
+    },
+    {
+        "sku": "500100318",
+        "nome": "Racas Britanicas Paleta Shoulder Brasil Caba\u00f1a Las Lilas Grass Fed Congelado - 500100318",
+        "preco_kg_site": 63.99,
+        "preco_venda_kg": 127.98,
+        "peso_medio_caixa": 12.0,
+        "preco_caixa_venda": 1535.76,
+        "image_filename": "IMAGEM_INDISPONIVEL.png"
+    },
+    {
+        "sku": "200004423",
+        "nome": "Angus Maminha Uruguay Caba\u00f1a Las Lilas Black Congelado - 200004423",
+        "preco_kg_site": 64.59,
+        "preco_venda_kg": 129.18,
+        "peso_medio_caixa": 13.0,
+        "preco_caixa_venda": 1679.3400000000001,
+        "image_filename": "product_200004423.jpg"
+    },
+    {
+        "sku": "500100445",
+        "nome": "Novilho Fralda Red Brasil Caba\u00f1a Las Lilas Grain Fed Resfriado - 500100445",
+        "preco_kg_site": 62.99,
+        "preco_venda_kg": 125.98,
+        "peso_medio_caixa": 11.0,
+        "preco_caixa_venda": 1385.78,
+        "image_filename": "product_500100445.jpg"
+    },
+    {
+        "sku": "500100435",
+        "nome": "Novilho Paleta Cora\u00e7\u00e3o Brasil Caba\u00f1a Las Lilas Grain Fed Resfriado - 500100435",
+        "preco_kg_site": 50.39,
+        "preco_venda_kg": 100.78,
+        "peso_medio_caixa": 13.0,
+        "preco_caixa_venda": 1310.14,
+        "image_filename": "product_500100435.jpg"
+    },
+    {
+        "sku": "500100430",
+        "nome": "Novilho Chorizo Steak Brasil Caba\u00f1a Las Lilas Grain Fed Resfriado - 500100430",
+        "preco_kg_site": 51.39,
+        "preco_venda_kg": 102.78,
+        "peso_medio_caixa": 14.0,
+        "preco_caixa_venda": 1438.92,
+        "image_filename": "product_500100430.jpg"
+    },
+    {
+        "sku": "500100282",
+        "nome": "Novilho Fralda Red Brasil Caba\u00f1a Las Lilas Grass Fed Resfriado - 500100282",
+        "preco_kg_site": 61.99,
+        "preco_venda_kg": 123.98,
+        "peso_medio_caixa": 14.0,
+        "preco_caixa_venda": 1735.72,
+        "image_filename": "IMAGEM_INDISPONIVEL.png"
+    },
+    {
+        "sku": "39895",
+        "nome": "Premium Picanha A Pesada Argentina (+1,6kg) Congelado - 39895",
+        "preco_kg_site": 81.99,
+        "preco_venda_kg": 163.98,
+        "peso_medio_caixa": 20.0,
+        "preco_caixa_venda": 3279.6,
+        "image_filename": "product_39895.jpg"
+    },
+    {
+        "sku": "31924",
+        "nome": "Novilho Paleta Shoulder Paraguai Estancia 92 Resfriado - 31924",
+        "preco_kg_site": 52.19,
+        "preco_venda_kg": 104.38,
+        "peso_medio_caixa": 15.0,
+        "preco_caixa_venda": 1565.6999999999998,
+        "image_filename": "product_31924.jpg"
+    },
+    {
+        "sku": "200094919",
+        "nome": "Novilho Paleta Cora\u00e7\u00e3o Uruguay Caba\u00f1a Las Lilas Congelado - 200094919",
+        "preco_kg_site": 41.99,
+        "preco_venda_kg": 83.98,
+        "peso_medio_caixa": 17.0,
+        "preco_caixa_venda": 1427.66,
+        "image_filename": "product_200094919.jpg"
+    },
+    {
+        "sku": "100520114",
+        "nome": "Premium Picanha A Leve Argentina (abaixo 1,5kg) Pul Selection Congelado - 100520114",
+        "preco_kg_site": 77.89,
+        "preco_venda_kg": 155.78,
+        "peso_medio_caixa": 21.0,
+        "preco_caixa_venda": 3271.38,
+        "image_filename": "product_100520114.jpg"
+    },
+    {
+        "sku": "100520111",
+        "nome": "Maminha Grill Argentina Pul Selection Congelado - 100520111",
+        "preco_kg_site": 44.99,
+        "preco_venda_kg": 89.98,
+        "peso_medio_caixa": 22.0,
+        "preco_caixa_venda": 1979.5600000000002,
+        "image_filename": "product_100520111.jpg"
+    },
+    {
+        "sku": "100520211",
+        "nome": "Novilho Picanha Leve Argentina (-1,5kg) Caba\u00f1as Las Lilas Congelado - 100520211",
+        "preco_kg_site": 109.62,
+        "preco_venda_kg": 219.24,
+        "peso_medio_caixa": 21.0,
+        "preco_caixa_venda": 4604.04,
+        "image_filename": "IMAGEM_INDISPONIVEL.png"
+    },
+    {
+        "sku": "100520673",
+        "nome": "Premium Picanha B Pesada Argentina (acima 1,5kg) Pul Congelado - 100520673",
+        "preco_kg_site": 66.99,
+        "preco_venda_kg": 133.98,
+        "peso_medio_caixa": 22.0,
+        "preco_caixa_venda": 2947.56,
+        "image_filename": "IMAGEM_INDISPONIVEL.png"
+    },
+    {
+        "sku": "73085",
+        "nome": "Angus Fralda Paraguai Es92 Angus Resfriado - 73085",
+        "preco_kg_site": 67.89,
+        "preco_venda_kg": 135.78,
+        "peso_medio_caixa": 16.0,
+        "preco_caixa_venda": 2172.48,
+        "image_filename": "product_73085.jpg"
+    },
+    {
+        "sku": "100520672",
+        "nome": "Picanha Argentina (abaixo 1,5kg) Pul Congelado - 100520672",
+        "preco_kg_site": 69.34,
+        "preco_venda_kg": 138.68,
+        "peso_medio_caixa": 21.0,
+        "preco_caixa_venda": 2912.28,
+        "image_filename": "IMAGEM_INDISPONIVEL.png"
+    },
+    {
+        "sku": "100520005",
+        "nome": "Premium Maminha Argentina Pul Congelado - 100520005",
+        "preco_kg_site": 39.89,
+        "preco_venda_kg": 79.78,
+        "peso_medio_caixa": 23.0,
+        "preco_caixa_venda": 1834.94,
+        "image_filename": "product_100520005.jpg"
+    },
+    {
+        "sku": "200095345",
+        "nome": "Premium Picanha A Leve Uruguay Pul Selection Congelado - 200095345",
+        "preco_kg_site": 76.99,
+        "preco_venda_kg": 153.98,
+        "peso_medio_caixa": 22.0,
+        "preco_caixa_venda": 3387.56,
+        "image_filename": "product_200095345.jpg"
+    },
+    {
+        "sku": "200095340",
+        "nome": "Novilho Picanha Leve Uruguay (-1,5kg) Caba\u00f1as Las Lilas Congelado - 200095340",
+        "preco_kg_site": 86.92,
+        "preco_venda_kg": 173.84,
+        "peso_medio_caixa": 13.0,
+        "preco_caixa_venda": 2259.92,
+        "image_filename": "product_200095340.jpg"
+    },
+    {
+        "sku": "200095339",
+        "nome": "Novilho Picanha Pesada Uruguay (+1,5kg) Caba\u00f1as Las Lilas Congelado - 200095339",
+        "preco_kg_site": 93.29,
+        "preco_venda_kg": 186.58,
+        "peso_medio_caixa": 14.0,
+        "preco_caixa_venda": 2612.1200000000003,
+        "image_filename": "IMAGEM_INDISPONIVEL.png"
+    },
+    {
+        "sku": "73050",
+        "nome": "Premium Bife Ancho Est\u00e2ncia 92 Angus Paraguai Resfriado - 73050",
+        "preco_kg_site": 72.19,
+        "preco_venda_kg": 144.38,
+        "peso_medio_caixa": 18.0,
+        "preco_caixa_venda": 2598.84,
+        "image_filename": "product_73050.jpg"
+    },
+    {
+        "sku": "244",
+        "nome": "Premium Cora\u00e7\u00e3o Da Paleta Paraguai Est\u00e2ncia 92 Angus (red Meat) Resfriado - 244",
+        "preco_kg_site": 43.59,
+        "preco_venda_kg": 87.18,
+        "peso_medio_caixa": 16.0,
+        "preco_caixa_venda": 1394.88,
+        "image_filename": "product_244.jpg"
+    },
+    {
+        "sku": "73088",
+        "nome": "Premium Bombom Da Alcatra Est\u00e2ncia 92 Angus Paraguai Resfriado - 73088",
+        "preco_kg_site": 59.09,
+        "preco_venda_kg": 118.18,
+        "peso_medio_caixa": 17.0,
+        "preco_caixa_venda": 2009.0600000000002,
+        "image_filename": "product_73088.jpg"
+    },
+    {
+        "sku": "73086",
+        "nome": "Premium Baby Beef Est\u00e2ncia 92 Angus Paraguai Resfriado - 73086",
+        "preco_kg_site": 54.29,
+        "preco_venda_kg": 108.58,
+        "peso_medio_caixa": 17.0,
+        "preco_caixa_venda": 1845.86,
+        "image_filename": "IMAGEM_INDISPONIVEL.png"
+    },
+    {
+        "sku": "73082",
+        "nome": "Premium Maminha Est\u00e2ncia 92 Angus Paraguai Resfriado - 73082",
+        "preco_kg_site": 50.15,
+        "preco_venda_kg": 100.3,
+        "peso_medio_caixa": 17.0,
+        "preco_caixa_venda": 1705.1,
+        "image_filename": "product_73082.jpg"
+    },
+    {
+        "sku": "73076",
+        "nome": "Premium Bife De Chorizo Est\u00e2ncia 92 Angus Paraguai Resfriado - 73076",
+        "preco_kg_site": 58.51,
+        "preco_venda_kg": 117.02,
+        "peso_medio_caixa": 16.0,
+        "preco_caixa_venda": 1872.32,
+        "image_filename": "product_73076.jpg"
+    },
+    {
+        "sku": "73043",
+        "nome": "Premium Steak Chorizo Est\u00e2ncia 92 Angus Paraguai Resfriado - 73043",
+        "preco_kg_site": 50.39,
+        "preco_venda_kg": 100.78,
+        "peso_medio_caixa": 16.0,
+        "preco_caixa_venda": 1612.48,
+        "image_filename": "IMAGEM_INDISPONIVEL.png"
+    },
+    {
+        "sku": "73062",
+        "nome": "Premium Bife Ancho Est\u00e2ncia 92 Angus (peda\u00e7o) Paraguai Resfriado - 73062",
+        "preco_kg_site": 71.16,
+        "preco_venda_kg": 142.32,
+        "peso_medio_caixa": 17.0,
+        "preco_caixa_venda": 2419.44,
+        "image_filename": "product_73062.jpg"
+    },
+    {
+        "sku": "73048",
+        "nome": "Premium Picanha Est\u00e2ncia 92 Angus Paraguai Resfriado - 73048",
+        "preco_kg_site": 106.87,
+        "preco_venda_kg": 213.74,
+        "peso_medio_caixa": 15.0,
+        "preco_caixa_venda": 3206.1000000000004,
+        "image_filename": "IMAGEM_INDISPONIVEL.png"
+    },
+    {
+        "sku": "67640",
+        "nome": "Premium Shoulder Steak Est\u00e2ncia 92 Angus Paraguai Resfriado - 67640",
+        "preco_kg_site": 59.59,
+        "preco_venda_kg": 119.18,
+        "peso_medio_caixa": 16.0,
+        "preco_caixa_venda": 1906.88,
+        "image_filename": "product_67640.jpg"
+    },
+    {
+        "sku": "500013783",
+        "nome": "Premium Bife De Chorizo Est\u00e2ncia 92 Angus Congelado - 500013783",
+        "preco_kg_site": 68.49,
+        "preco_venda_kg": 136.98,
+        "peso_medio_caixa": 12.0,
+        "preco_caixa_venda": 1643.7599999999998,
+        "image_filename": "IMAGEM_INDISPONIVEL.png"
+    },
+    {
+        "sku": "28699",
+        "nome": "Novilho Short Ribs Brasil Estancia 92 Congelado - 28699",
+        "preco_kg_site": 52.99,
+        "preco_venda_kg": 105.98,
+        "peso_medio_caixa": 10.0,
+        "preco_caixa_venda": 1059.8,
+        "image_filename": "product_28699.jpg"
+    },
+    {
+        "sku": "22852",
+        "nome": "Novilho Paleta Brasil Estancia 92 Congelado - 22852",
+        "preco_kg_site": 47.49,
+        "preco_venda_kg": 94.98,
+        "peso_medio_caixa": 13.0,
+        "preco_caixa_venda": 1234.74,
+        "image_filename": "product_22852.jpg"
+    },
+    {
+        "sku": "29926",
+        "nome": "Premium Picanha B (tapa De Cuadril) Argentina Acima 1,5 Pilotti Congelado - 29926",
+        "preco_kg_site": 77.79,
+        "preco_venda_kg": 155.58,
+        "peso_medio_caixa": 22.0,
+        "preco_caixa_venda": 3422.76,
+        "image_filename": "product_29926.jpg"
+    },
+    {
+        "sku": "23629",
+        "nome": "Novilho Cupim Est\u00e2ncia 92 Paraguai Resfriado - 23629",
+        "preco_kg_site": 44.59,
+        "preco_venda_kg": 89.18,
+        "peso_medio_caixa": 16.0,
+        "preco_caixa_venda": 1426.88,
+        "image_filename": "product_23629.jpg"
+    },
+    {
+        "sku": "24400",
+        "nome": "Premium Picanha Super (tapa De Cuadril) Australia Acima 1,5 Kilcoy Congelado - 24400",
+        "preco_kg_site": 79.99,
+        "preco_venda_kg": 159.98,
+        "peso_medio_caixa": 21.0,
+        "preco_caixa_venda": 3359.58,
+        "image_filename": "IMAGEM_INDISPONIVEL.png"
+    },
+    {
+        "sku": "26426",
+        "nome": "Premium Picanha A (tapa De Cuadril) Argentina Abaixo 1,5 Pilotti Congelado - 26426",
+        "preco_kg_site": 86.99,
+        "preco_venda_kg": 173.98,
+        "peso_medio_caixa": 23.0,
+        "preco_caixa_venda": 4001.54,
+        "image_filename": "product_26426.jpg"
+    },
+    {
+        "sku": "10682",
+        "nome": "Premium Picanha A (tapa De Cuadril) Argentina Acima 1,5 Pilotti Congelado - 10682",
+        "preco_kg_site": 78.99,
+        "preco_venda_kg": 157.98,
+        "peso_medio_caixa": 20.0,
+        "preco_caixa_venda": 3159.6,
+        "image_filename": "product_10682.jpg"
+    },
+    {
+        "sku": "98790",
+        "nome": "Novilho Chorizo Brasil Estancia 92 Resfriado - 98790",
+        "preco_kg_site": 47.99,
+        "preco_venda_kg": 95.98,
+        "peso_medio_caixa": 14.0,
+        "preco_caixa_venda": 1343.72,
+        "image_filename": "product_98790.jpg"
+    },
+    {
+        "sku": "98760",
+        "nome": "Novilho Fralda Red Brasil Estancia 92 Resfriado - 98760",
+        "preco_kg_site": 55.99,
+        "preco_venda_kg": 111.98,
+        "peso_medio_caixa": 13.0,
+        "preco_caixa_venda": 1455.74,
+        "image_filename": "product_98760.jpg"
+    },
+    {
+        "sku": "98638",
+        "nome": "Novilho Cupim Brasil Estancia 92 Resfriado - 98638",
+        "preco_kg_site": 43.25,
+        "preco_venda_kg": 86.5,
+        "peso_medio_caixa": 13.0,
+        "preco_caixa_venda": 1124.5,
+        "image_filename": "product_98638.jpg"
+    },
+    {
+        "sku": "23618",
+        "nome": "Novilho Cora\u00e7\u00e3o Da Alcatra (bombom) Paraguai Est\u00e2ncia 92 Resfriado - 23618",
+        "preco_kg_site": 48.49,
+        "preco_venda_kg": 96.98,
+        "peso_medio_caixa": 17.0,
+        "preco_caixa_venda": 1648.66,
+        "image_filename": "product_23618.jpg"
+    },
+    {
+        "sku": "12194",
+        "nome": "Novilho Maminha Brasil Estancia 92 Congelado - 12194",
+        "preco_kg_site": 42.49,
+        "preco_venda_kg": 84.98,
+        "peso_medio_caixa": 14.0,
+        "preco_caixa_venda": 1189.72,
+        "image_filename": "product_12194.jpg"
+    },
+    {
+        "sku": "12190",
+        "nome": "Novilho Picanha Brasil Estancia 92 Congelado - 12190",
+        "preco_kg_site": 88.99,
+        "preco_venda_kg": 177.98,
+        "peso_medio_caixa": 14.0,
+        "preco_caixa_venda": 2491.72,
+        "image_filename": "product_12190.jpg"
+    },
+    {
+        "sku": "23615",
+        "nome": "Novilho Bife De Chorizo (peda\u00e7o) Paraguai Est\u00e2ncia 92 Resfriado - 23615",
+        "preco_kg_site": 48.49,
+        "preco_venda_kg": 96.98,
+        "peso_medio_caixa": 17.0,
+        "preco_caixa_venda": 1648.66,
+        "image_filename": "product_23615.jpg"
+    },
+    {
+        "sku": "12374",
+        "nome": "Novilho Chorizo Peda\u00e7o Brasil Estancia 92 Congelado - 12374",
+        "preco_kg_site": 49.99,
+        "preco_venda_kg": 99.98,
+        "peso_medio_caixa": 13.0,
+        "preco_caixa_venda": 1299.74,
+        "image_filename": "product_12374.jpg"
+    },
+    {
+        "sku": "98761",
+        "nome": "Novilho Ancho Brasil Estancia 92 Resfriado - 98761",
+        "preco_kg_site": 45.99,
+        "preco_venda_kg": 91.98,
+        "peso_medio_caixa": 13.0,
+        "preco_caixa_venda": 1195.74,
+        "image_filename": "product_98761.jpg"
+    }
+]
