@@ -148,7 +148,14 @@ export default function Home() {
 
                     <Button
                       variant="outline"
-                      className="w-full mt-6 border-accent text-accent hover:bg-accent hover:text-accent-foreground"
+                      className="w-full mt-6 border-accent text-accent hover:bg-accent hover:text-accent-foreground cursor-pointer"
+                      onClick={() => {
+                        const message = `Olá Valckenborgh, gostaria de solicitar um orçamento para o produto: ${product.nome} (SKU: ${product.sku})`;
+                        window.open(
+                          `https://wa.me/5527996187603?text=${encodeURIComponent(message)}`,
+                          '_blank'
+                        );
+                      }}
                     >
                       Solicitar Orçamento
                     </Button>
