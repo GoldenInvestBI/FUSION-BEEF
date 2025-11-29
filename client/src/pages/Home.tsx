@@ -42,14 +42,10 @@ export default function Home() {
         <div className="container py-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img
-              src="/Gemini_Generated_Image_5w0vd85w0vd85w0v.png"
+              src="/fusion-beef-logo.png"
               alt="Fusion Beef Logo"
-              className="h-12 w-12"
+              className="h-16 w-16"
             />
-            <div>
-              <h1 className="text-2xl font-bold text-accent">Fusion Beef</h1>
-              <p className="text-sm text-muted-foreground">Prime Cuts & Grill</p>
-            </div>
           </div>
           <nav className="hidden md:flex gap-8">
             <a href="#produtos" className="text-foreground hover:text-accent transition-colors">
