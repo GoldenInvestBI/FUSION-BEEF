@@ -44,7 +44,7 @@ export default function Home() {
             <img
               src="/fusion-beef-logo.png"
               alt="Fusion Beef Logo"
-              className="h-16 w-16"
+              className="h-20 w-20"
             />
           </div>
           <nav className="hidden md:flex gap-8">
