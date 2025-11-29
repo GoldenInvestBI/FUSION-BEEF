@@ -190,6 +190,66 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Seção de Contato */}
+      <section className="bg-secondary/20 border-t border-border/30 py-16">
+        <div className="container max-w-2xl">
+          <h2 className="text-4xl font-bold text-accent mb-8 text-center">
+            Entre em Contato
+          </h2>
+
+          <div className="bg-card border border-border/30 rounded-lg p-8 text-center">
+            <p className="text-lg text-foreground mb-6">
+              Para solicitar orçamentos e informações sobre nossos produtos,
+              entre em contato com nosso representante:
+            </p>
+
+            <div className="mb-8">
+              <h3 className="text-2xl font-bold text-accent mb-2">
+                Valckenborgh Borges
+              </h3>
+              <p className="text-lg text-muted-foreground mb-6">
+                Gerente de Vendas - Fusion Beef
+              </p>
+
+              <div className="flex items-center justify-center gap-3 mb-6">
+                <svg
+                  className="w-6 h-6 text-accent"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.255.949c-1.238.503-2.37 1.236-3.355 2.22-1.798 1.799-2.823 4.15-2.823 6.556 0 2.405 1.025 4.757 2.823 6.555 1.798 1.798 4.15 2.823 6.556 2.823 2.405 0 4.757-1.025 6.556-2.823 1.798-1.798 2.823-4.15 2.823-6.556 0-2.405-1.025-4.757-2.823-6.556-.984-.984-2.117-1.717-3.355-2.22a9.87 9.87 0 00-4.255-.949" />
+                </svg>
+                <a
+                  href="https://wa.me/5527996187603?text=Olá%20Valckenborgh%2C%20gostaria%20de%20solicitar%20um%20orçamento%20de%20produtos%20Fusion%20Beef"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xl font-bold text-accent hover:text-accent/80 transition-colors"
+                >
+                  (27) 99618-7603
+                </a>
+              </div>
+
+              <p className="text-sm text-muted-foreground bg-accent/10 border border-accent/20 rounded px-4 py-3">
+                ⚠️ <strong>Contato exclusivamente via WhatsApp</strong>
+              </p>
+            </div>
+
+            <Button
+              size="lg"
+              className="bg-accent hover:bg-accent/90 text-accent-foreground"
+              onClick={() => {
+                window.open(
+                  'https://wa.me/5527996187603?text=Olá%20Valckenborgh%2C%20gostaria%20de%20solicitar%20um%20orçamento%20de%20produtos%20Fusion%20Beef',
+                  '_blank'
+                );
+              }}
+            >
+              Enviar Mensagem via WhatsApp
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="bg-background border-t border-border/30 py-12">
         <div className="container text-center">
@@ -198,7 +258,7 @@ export default function Home() {
             reservados.
           </p>
           <p className="text-sm text-muted-foreground">
-            Para dúvidas ou solicitações, entre em contato conosco.
+            Contato: Valckenborgh Borges | WhatsApp: (27) 99618-7603
           </p>
         </div>
       </footer>
