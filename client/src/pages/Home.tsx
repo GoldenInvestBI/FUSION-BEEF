@@ -23,7 +23,7 @@ export default function Home() {
 
   useEffect(() => {
     // Carregar dados dos produtos
-    fetch("/produtos_em_estoque.json")
+    fetch("/produtos_em_estoque_60percent.json")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);

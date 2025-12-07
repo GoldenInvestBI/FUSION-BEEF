@@ -1,0 +1,110 @@
+[
+  {
+    "nome": "Racas Britanicas Paleta Shoulder Brasil Cabaña Las Lilas Grass Fed Congelado",
+    "sku": "500100318",
+    "preco_site": 66.99,
+    "peso": 12,
+    "status": "CONGELADO",
+    "preco_venda_kg": 107.18,
+    "preco_venda_caixa": 1286.16
+  },
+  {
+    "nome": "Angus Maminha Uruguay Cabaña Las Lilas Black Congelado",
+    "sku": "200004423",
+    "preco_site": 67.99,
+    "peso": 13,
+    "status": "CONGELADO",
+    "preco_venda_kg": 108.78,
+    "preco_venda_caixa": 1414.14
+  },
+  {
+    "nome": "Novilho Fralda Brasil Cabaña Las Lilas Grain Fed Resfriado",
+    "sku": "500100446",
+    "preco_site": 56.99,
+    "peso": 12,
+    "status": "RESFRIADO",
+    "preco_venda_kg": 91.18,
+    "preco_venda_caixa": 1094.16
+  },
+  {
+    "nome": "Novilho Ancho Brasil Cabaña Las Lilas Grain Fed Resfriado",
+    "sku": "500100432",
+    "preco_site": 79.99,
+    "peso": 14,
+    "status": "RESFRIADO",
+    "preco_venda_kg": 127.98,
+    "preco_venda_caixa": 1791.72
+  },
+  {
+    "nome": "Novilho Fralda Red Brasil Cabaña Las Lilas Grain Fed Resfriado",
+    "sku": "500100445",
+    "preco_site": 78.98,
+    "peso": 11,
+    "status": "RESFRIADO",
+    "preco_venda_kg": 126.37,
+    "preco_venda_caixa": 1390.07
+  },
+  {
+    "nome": "Novilho Paleta Coração Brasil Cabaña Las Lilas Grain Fed Resfriado",
+    "sku": "500100435",
+    "preco_site": 54.98,
+    "peso": 13,
+    "status": "RESFRIADO",
+    "preco_venda_kg": 87.97,
+    "preco_venda_caixa": 1143.61
+  },
+  {
+    "nome": "Novilho Picanha Leve Brasil Cabaña Las Lilas Grain Fed Resfriado",
+    "sku": "500100423",
+    "preco_site": 114.99,
+    "peso": 14,
+    "status": "RESFRIADO",
+    "preco_venda_kg": 183.98,
+    "preco_venda_caixa": 2575.72
+  },
+  {
+    "nome": "Novilho Acem Brasil Cabaña Las Lilas Grain Fed Resfriado",
+    "sku": "500100437",
+    "preco_site": 51.98,
+    "peso": 14,
+    "status": "RESFRIADO",
+    "preco_venda_kg": 83.17,
+    "preco_venda_caixa": 1164.38
+  },
+  {
+    "nome": "Novilho File Mignon Sem Cordão Brasil Cabaña Las Lilas Grass Fed Resfriado",
+    "sku": "500100273",
+    "preco_site": 76.99,
+    "peso": 14,
+    "status": "RESFRIADO",
+    "preco_venda_kg": 123.18,
+    "preco_venda_caixa": 1724.52
+  },
+  {
+    "nome": "Novilho Fralda Red Brasil Cabaña Las Lilas Grass Fed Resfriado",
+    "sku": "500100282",
+    "preco_site": 61.99,
+    "peso": 14,
+    "status": "RESFRIADO",
+    "preco_venda_kg": 99.18,
+    "preco_venda_caixa": 1388.52
+  },
+  {
+    "nome": "Novilho Chorizo Brasil Cabaña Las Lilas Grass Fed Resfriado",
+    "sku": "500100265",
+    "preco_site": 49.99,
+    "peso": 13,
+    "status": "RESFRIADO",
+    "preco_venda_kg": 79.98,
+    "preco_venda_caixa": 1039.74
+  },
+  {
+    "nome": "Novilho Fralda Brasil Cabaña Las Lilas Grass Fed Resfriado",
+    "sku": "500100281",
+    "preco_site": 46.99,
+    "peso": 14,
+    "status": "RESFRIADO",
+    "preco_venda_kg": 75.18,
+    "preco_venda_caixa": 1052.52
+  }
+]
