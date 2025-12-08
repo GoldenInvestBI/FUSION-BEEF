@@ -89,12 +89,6 @@ export default function AdminLogin({ onLogin }: AdminLoginProps) {
               {loading ? "Entrando..." : "Entrar"}
             </Button>
           </form>
-          <div className="mt-6 p-4 bg-amber-50 rounded-lg border border-amber-200">
-            <p className="text-xs text-amber-800 text-center">
-              <strong>Credenciais padrão:</strong><br />
-              Usuário: admin | Senha: fusion2024
-            </p>
-          </div>
         </CardContent>
       </Card>
     </div>

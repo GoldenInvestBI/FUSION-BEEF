@@ -69,3 +69,47 @@
 - [x] Botão Admin visível no header
 - [x] Botão Sair funcionando
 - [x] Dashboard mostrando estatísticas corretas
+
+
+#### Coleta Completa de Produtos
+- [x] Coletar produtos da categoria Suínos (8 produtos)
+- [x] Coletar produtos da categoria Pescados (8 produtos)
+- [x] Salvar 16 novos produtos no banco de dados
+- [x] Total no catálogo: 35 produtos
+- [ ] Coletar produtos da categoria Cordeiros
+- [ ] Coletar produtos da categoria Empanados
+- [ ] Coletar produtos da categoria Vegetais
+- [ ] Coletar produtos da categoria Jerked Beef
+- [ ] Coletar produtos da categoria Azeite
+- [ ] Coletar produtos da categoria Combosdutos da categoria Promoções
+- [ ] Salvar todos os produtos no banco de dados
+## Deploy Automático
+- [x] Criar instruções de configuração SSH (INSTRUCOES_DEPLOY_SSH.md)
+- [ ] Adicionar chave SSH ao servidor Digital Ocean (manual)
+- [ ] Testar deploy via GitHub Actions
+- [ ] Validar site em produção GitHub Actions
+- [ ] Validar site em produção
+
+
+## Coleta Completa de Produtos
+- [ ] Scraping de produtos da categoria Suínos
+- [ ] Scraping de produtos da categoria Pescados
+- [ ] Scraping de produtos da categoria Cordeiros
+- [ ] Scraping de produtos da categoria Empanados
+- [ ] Scraping de produtos da categoria Vegetais
+- [ ] Scraping de produtos da categoria Jerked Beef
+- [ ] Scraping de produtos da categoria Azeite
+- [ ] Scraping de produtos da categoria Combos
+- [ ] Scraping de produtos da categoria Promoções
+- [ ] Validar URLs das imagens do portal Minerva
+- [ ] Salvar todos os produtos no banco de dados
+
+## Deploy Automático
+- [ ] Configurar chave SSH no servidor Digital Ocean
+- [ ] Testar conexão SSH do GitHub Actions
+- [ ] Executar deploy via GitHub Actions
+- [ ] Validar site em produção
+
+
+## Ajustes de Segurança
+- [ ] Remover dica de senha padrão da tela de login
