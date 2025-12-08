@@ -175,73 +175,205 @@ class MinervaScraper:
             sys.exit(1)
             
     def start_log(self):
-        """Create a new scrape log entry"""
-        query = """
-        INSERT INTO scrape_logs (status, startedAt, createdAt)
-        VALUES ('running', %s, %s)
-        """
+        """Create a new scrape log entry (simplified - no database logging)"""
         now = datetime.now()
-        self.cursor.execute(query, (now, now))
-        self.db.commit()
-        self.log_id = self.cursor.lastrowid
-        print(f"📝 Started scrape log #{self.log_id}")
+        self.log_id = int(now.timestamp())
+        print(f"📝 Scrape session started: {now.strftime('%Y-%m-%d %H:%M:%S')}")
+        print(f"   Session ID: {self.log_id}")
         
     def update_log(self, status, error_message=None):
-        """Update scrape log with final status"""
-        query = """
-        UPDATE scrape_logs 
-        SET status = %s, 
-            productsFound = %s,
-            productsAdded = %s,
-            productsUpdated = %s,
-            productsRemoved = %s,
-            errorMessage = %s,
-            completedAt = %s
-        WHERE id = %s
-        """
+        """Update scrape log with final status (simplified - console only)"""
         now = datetime.now()
-        self.cursor.execute(query, (
-            status,
-            self.stats["found"],
-            self.stats["added"],
-            self.stats["updated"],
-            self.stats["removed"],
-            error_message,
-            now,
-            self.log_id
-        ))
-        self.db.commit()
+        print(f"\n📊 Scrape session completed: {now.strftime('%Y-%m-%d %H:%M:%S')}")
+        print(f"   Status: {status}")
+        print(f"   Products found: {self.stats['found']}")
+        print(f"   Products added: {self.stats['added']}")
+        print(f"   Products updated: {self.stats['updated']}")
+        print(f"   Products removed: {self.stats['removed']}")
+        if error_message:
+            print(f"   Error: {error_message}")
         
     def manual_login(self):
-        """Manual login - você fará o login manualmente"""
+        """Automatic login with provided credentials"""
         print("\n" + "="*60)
-        print("🔐 ETAPA DE LOGIN MANUAL")
+        print("🔐 FAZENDO LOGIN AUTOMÁTICO")
         print("="*60)
-        print("\nO navegador abrirá o portal Minerva.")
-        print("Por favor, faça o login MANUALMENTE:")
-        print(f"  CNPJ: {CNPJ}")
-        print(f"  Senha: {PASSWORD}")
-        print("\nApós fazer login e ver a página inicial,")
-        print("pressione ENTER aqui no terminal para continuar...")
+        print(f"\nURL: {MINERVA_URL}")
+        print(f"CNPJ: {CNPJ}")
+        print("Senha: ********")
         print("="*60 + "\n")
         
-        # Navigate to homepage
-        self.driver.get(MINERVA_URL)
-        
-        # Wait for manual login
-        input("⏸️  Pressione ENTER após fazer login manualmente... ")
-        
-        # Check if logged in
-        current_url = self.driver.current_url
-        print(f"\n✅ URL atual: {current_url}")
-        
-        if "customer/account" in current_url or "dashboard" in current_url or current_url != MINERVA_URL:
-            print("✅ Login detectado! Continuando...")
+        try:
+            # Page is already loaded by run(), just wait a bit more
+            print("🔍 Analisando página...")
+            time.sleep(2)
+            
+            # Save screenshot for debugging
+            screenshot_path = SCRIPT_DIR / "debug_homepage.png"
+            self.driver.save_screenshot(str(screenshot_path))
+            print(f"📸 Screenshot salvo em: {screenshot_path}")
+            
+            # Get page source for debugging
+            page_source = self.driver.page_source
+            
+            # Try multiple strategies to find login elements
+            login_success = False
+            
+            # Strategy 1: Look for login link/button and click it
+            try:
+                print("\n🔍 Estratégia 1: Procurando link/botão de login...")
+                login_selectors = [
+                    "//a[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'login')]",
+                    "//a[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'entrar')]",
+                    "//button[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'login')]",
+                    "//button[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'entrar')]",
+                    "//a[contains(@href, 'login')]",
+                    "//a[contains(@href, 'account')]",
+                    "//a[@class='authorization-link']",
+                ]
+                
+                for selector in login_selectors:
+                    try:
+                        login_button = WebDriverWait(self.driver, 3).until(
+                            EC.element_to_be_clickable((By.XPATH, selector))
+                        )
+                        print(f"✅ Encontrado com seletor: {selector}")
+                        login_button.click()
+                        print("✅ Botão de login clicado")
+                        time.sleep(3)
+                        break
+                    except:
+                        continue
+            except Exception as e:
+                print(f"⚠️  Nenhum botão de login encontrado: {e}")
+            
+            # Strategy 2: Try to fill form directly
+            try:
+                print("\n🔍 Estratégia 2: Procurando campos de formulário...")
+                
+                # Multiple selectors for username/CNPJ field
+                cnpj_selectors = [
+                    "//input[@name='username']",
+                    "//input[@name='login']",
+                    "//input[@id='email']",
+                    "//input[@id='username']",
+                    "//input[@type='text'][1]",
+                    "//input[contains(@placeholder, 'CNPJ')]",
+                    "//input[contains(@placeholder, 'CPF')]",
+                    "//input[contains(@placeholder, 'E-mail')]",
+                    "//input[contains(@class, 'username')]",
+                    "//input[contains(@class, 'email')]",
+                ]
+                
+                cnpj_field = None
+                for selector in cnpj_selectors:
+                    try:
+                        cnpj_field = WebDriverWait(self.driver, 2).until(
+                            EC.presence_of_element_located((By.XPATH, selector))
+                        )
+                        print(f"✅ Campo CNPJ encontrado com: {selector}")
+                        break
+                    except:
+                        continue
+                
+                if cnpj_field:
+                    print("📝 Preenchendo CNPJ...")
+                    cnpj_field.clear()
+                    cnpj_field.send_keys(CNPJ)
+                    time.sleep(1)
+                    
+                    # Find password field
+                    print("🔑 Procurando campo de senha...")
+                    password_field = self.driver.find_element(By.XPATH, "//input[@type='password']")
+                    password_field.clear()
+                    password_field.send_keys(PASSWORD)
+                    time.sleep(1)
+                    
+                    # Find and click submit button
+                    print("🚀 Procurando botão de envio...")
+                    submit_selectors = [
+                        "//button[@type='submit']",
+                        "//input[@type='submit']",
+                        "//button[contains(text(), 'Entrar')]",
+                        "//button[contains(text(), 'Login')]",
+                        "//button[contains(@class, 'submit')]",
+                        "//button[contains(@class, 'login')]",
+                    ]
+                    
+                    for selector in submit_selectors:
+                        try:
+                            submit_button = self.driver.find_element(By.XPATH, selector)
+                            submit_button.click()
+                            print("✅ Formulário enviado")
+                            login_success = True
+                            break
+                        except:
+                            continue
+                    
+                    if login_success:
+                        # Wait for login to complete
+                        print("⏳ Aguardando login...")
+                        time.sleep(5)
+                        
+                        # Check if logged in
+                        current_url = self.driver.current_url
+                        print(f"\n✅ URL atual: {current_url}")
+                        
+                        # Check for common success indicators
+                        if ("customer/account" in current_url or 
+                            "dashboard" in current_url or 
+                            "minha-conta" in current_url or
+                            "account" in current_url or
+                            current_url != MINERVA_URL):
+                            print("✅ Login realizado com sucesso!")
+                            return True
+                        
+                        # Check for logout button
+                        try:
+                            logout_selectors = [
+                                "//a[contains(text(), 'Sair')]",
+                                "//a[contains(text(), 'Logout')]",
+                                "//button[contains(text(), 'Sair')]",
+                                "//a[contains(@href, 'logout')]",
+                            ]
+                            for selector in logout_selectors:
+                                try:
+                                    self.driver.find_element(By.XPATH, selector)
+                                    print("✅ Login confirmado (botão de logout encontrado)!")
+                                    return True
+                                except:
+                                    continue
+                        except:
+                            pass
+            
+            except Exception as e:
+                print(f"❌ Erro ao preencher formulário: {e}")
+            
+            # If automatic login failed, fallback to manual
+            print("\n" + "="*60)
+            print("⚠️  LOGIN AUTOMÁTICO NÃO FUNCIONOU")
+            print("="*60)
+            print("\nO portal pode ter:")
+            print("  - Estrutura diferente do esperado")
+            print("  - CAPTCHA ou verificação de segurança")
+            print("  - Requerer interação humana")
+            print("\nPor favor, FAÇA LOGIN MANUALMENTE no navegador.")
+            print(f"\nCredenciais:")
+            print(f"  CNPJ: {CNPJ}")
+            print(f"  Senha: {PASSWORD}")
+            print("\nApós fazer login e ver a página inicial,")
+            print("pressione ENTER aqui para continuar...")
+            print("="*60 + "\n")
+            
+            input("⏸️  Pressione ENTER após fazer login manualmente... ")
             return True
-        else:
-            print("⚠️  Não foi possível confirmar o login.")
-            response = input("Você fez login com sucesso? (s/n): ")
-            return response.lower() == 's'
+            
+        except Exception as e:
+            print(f"\n❌ Erro crítico durante login: {e}")
+            print("\nPor favor, faça o login MANUALMENTE no navegador.")
+            print("Após fazer login, pressione ENTER aqui para continuar...")
+            input("\n⏸️  Pressione ENTER após fazer login manualmente... ")
+            return True
             
     def scrape_category(self, category_name):
         """Scrape all products from a specific category"""
@@ -474,11 +606,19 @@ class MinervaScraper:
             print(f"Diretório de imagens: {IMAGE_DIR}")
             print(f"Categorias: {len(CATEGORIES)}")
             print(f"Markup: {MARKUP_PERCENT}%")
+            print(f"URL do Portal: {MINERVA_URL}")
             print("\n" + "="*60 + "\n")
             
             self.connect_db()
             self.start_log()
+            
+            print("🌐 Inicializando navegador...")
             self.setup_driver()
+            
+            print(f"\n📍 Navegando para {MINERVA_URL}...")
+            self.driver.get(MINERVA_URL)
+            print("✅ Página carregada!\n")
+            time.sleep(3)
             
             if not self.manual_login():
                 raise Exception("Login manual não foi completado")

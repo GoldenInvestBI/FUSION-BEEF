@@ -1,5 +1,5 @@
-import { useState } from "react";
-// import { useAuth } from "@/lib/auth"; // TODO: Implement auth
+import { useState, useEffect } from "react";
+import AdminLogin from "@/components/AdminLogin";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -10,10 +10,23 @@ import { toast } from "sonner";
 import { RefreshCw, Settings, Database, TrendingUp } from "lucide-react";
 
 export default function Admin() {
-  // Temporary: assume admin is logged in
-  const user = { name: "Admin", email: "admin@fusionbeef.com.br" };
-  const isAuthenticated = true;
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [newMarkup, setNewMarkup] = useState("60");
+
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("admin_logged_in") === "true";
+    setIsAuthenticated(loggedIn);
+  }, []);
+
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("admin_logged_in");
+    setIsAuthenticated(false);
+    toast.success("Logout realizado com sucesso!");
+  };
   
   const { data: products = [] } = trpc.products.getAll.useQuery({ inStockOnly: false });
   const { data: logs = [] } = trpc.products.getScrapeLogs.useQuery({ limit: 20 });
@@ -37,25 +50,9 @@ export default function Admin() {
     updateMarkupMutation.mutate({ markup });
   };
 
-  // Redirect if not authenticated
+  // Show login screen if not authenticated
   if (!isAuthenticated) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <Card className="w-full max-w-md">
-          <CardHeader>
-            <CardTitle>Acesso Restrito</CardTitle>
-            <CardDescription>
-              Você precisa estar autenticado para acessar o painel administrativo.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Button onClick={() => window.location.href = "/api/auth/login"} className="w-full">
-              Fazer Login
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
-    );
+    return <AdminLogin onLogin={handleLogin} />;
   }
 
   const currentMarkup = settings.default_markup || "60";
@@ -69,11 +66,16 @@ export default function Admin() {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div>
             <h1 className="text-2xl font-bold text-accent">Admin Dashboard</h1>
-            <p className="text-sm text-muted-foreground">Bem-vindo, {user?.name || user?.email}</p>
+            <p className="text-sm text-muted-foreground">Painel Administrativo - Fusion Beef</p>
           </div>
-          <Button variant="outline" onClick={() => window.location.href = "/"}>
-            Voltar ao Site
-          </Button>
+          <div className="flex gap-2">
+            <Button variant="outline" onClick={() => window.location.href = "/"}>
+              Voltar ao Site
+            </Button>
+            <Button variant="destructive" onClick={handleLogout}>
+              Sair
+            </Button>
+          </div>
         </div>
       </header>
 

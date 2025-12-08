@@ -58,3 +58,14 @@
 - [ ] Configurar chave SSH no servidor Digital Ocean
 - [ ] Executar primeiro deploy via GitHub Actions
 - [ ] Testar deploy automático
+
+
+## Scraping Manual e Autenticação Admin
+- [x] Fazer scraping manual de 12 produtos de Bovinos do portal Minerva
+- [x] Salvar 12 produtos no banco de dados (total: 19 produtos)
+- [x] Implementar sistema de login/senha no dashboard admin
+- [x] Testar autenticação (Usuário: admin | Senha: fusion2024)
+- [x] Validar produtos no site
+- [x] Botão Admin visível no header
+- [x] Botão Sair funcionando
+- [x] Dashboard mostrando estatísticas corretas
