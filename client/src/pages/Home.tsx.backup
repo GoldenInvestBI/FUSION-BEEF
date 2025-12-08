@@ -2,53 +2,63 @@ import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Search, X } from "lucide-react";
-import { trpc } from "@/lib/trpc";
 
 interface Product {
-  id: number;
   sku: string;
-  name: string;
-  category: string;
-  priceOriginal: string;
-  priceWithMarkup: string;
-  markup: string;
-  imageUrl: string | null;
-  imageLocalPath: string | null;
-  stockStatus: string | null;
-  minervaUrl: string | null;
-  inStock: number;
+  nome: string;
+  preco_venda_kg: number;
+  image_filename: string;
+  imagem_url?: string;
+  categoria?: string;
 }
 
 export default function Home() {
-  const { data: products = [], isLoading } = trpc.products.getAll.useQuery({
-    inStockOnly: true,
-  });
-  const { data: categories = [] } = trpc.products.getCategories.useQuery();
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>("todas");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<'nome' | 'preco_asc' | 'preco_desc'>('nome');
+  const [categories, setCategories] = useState<string[]>([]);
 
   // Filtrar e ordenar produtos
   const filteredProducts = (() => {
     let filtered = products.filter((product) => {
-      const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      const matchesSearch = product.nome.toLowerCase().includes(searchQuery.toLowerCase()) ||
                            product.sku.toLowerCase().includes(searchQuery.toLowerCase());
-      const matchesCategory = selectedCategory === 'todas' || product.category === selectedCategory;
+      const matchesCategory = selectedCategory === 'todas' || product.categoria === selectedCategory;
       return matchesSearch && matchesCategory;
     });
 
     if (sortBy === 'preco_asc') {
-      filtered.sort((a, b) => parseFloat(a.priceWithMarkup) - parseFloat(b.priceWithMarkup));
+      filtered.sort((a, b) => a.preco_venda_kg - b.preco_venda_kg);
     } else if (sortBy === 'preco_desc') {
-      filtered.sort((a, b) => parseFloat(b.priceWithMarkup) - parseFloat(a.priceWithMarkup));
+      filtered.sort((a, b) => b.preco_venda_kg - a.preco_venda_kg);
     } else {
-      filtered.sort((a, b) => a.name.localeCompare(b.name));
+      filtered.sort((a, b) => a.nome.localeCompare(b.nome));
     }
 
     return filtered;
   })();
 
-  // Products are loaded via tRPC hooks
+  useEffect(() => {
+    fetch("/produtos_em_estoque_60percent.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data);
+        
+        const cats = new Set<string>();
+        data.forEach((p: Product) => {
+          if (p.categoria) cats.add(p.categoria);
+        });
+        setCategories(Array.from(cats).sort());
+        
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Erro ao carregar produtos:", err);
+        setLoading(false);
+      });
+  }, []);
 
   const handleWhatsApp = (productName: string, sku: string) => {
     const message = `Olá! Tenho interesse no produto: ${productName} (SKU: ${sku})`;
@@ -150,7 +160,7 @@ export default function Home() {
           </div>
 
           {/* Grid de Produtos */}
-          {isLoading ? (
+          {loading ? (
             <div className="text-center py-12">
               <p className="text-muted-foreground">Carregando produtos...</p>
             </div>
@@ -165,18 +175,18 @@ export default function Home() {
                   <div className="group bg-card border border-border/30 rounded-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:border-accent/50 cursor-pointer">
                     {/* Imagem */}
                     <div className="relative h-64 bg-black overflow-hidden flex items-center justify-center">
-                      {product.imageUrl ? (
+                      {product.imagem_url ? (
                         <img
-                          src={product.imageUrl}
-                          alt={product.name}
+                          src={product.imagem_url}
+                          alt={product.nome}
                           className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-300"
                           style={{ imageRendering: 'crisp-edges' }}
                           loading="lazy"
                         />
-                      ) : product.imageLocalPath ? (
+                      ) : product.image_filename && product.image_filename !== "IMAGEM_INDISPONIVEL.png" ? (
                         <img
-                          src={product.imageLocalPath}
-                          alt={product.name}
+                          src={`/images/${product.image_filename}`}
+                          alt={product.nome}
                           className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-300"
                           style={{ imageRendering: 'crisp-edges' }}
                           loading="lazy"
@@ -191,14 +201,14 @@ export default function Home() {
                     {/* Info */}
                     <div className="p-6">
                       <h3 className="text-lg font-semibold text-foreground mb-2 line-clamp-2 group-hover:text-accent transition-colors">
-                        {product.name}
+                        {product.nome}
                       </h3>
                       <p className="text-sm text-muted-foreground mb-4">SKU: {product.sku}</p>
-                      <p className="text-2xl font-bold text-accent mb-6">R$ {parseFloat(product.priceWithMarkup).toFixed(2)}/kg</p>
+                      <p className="text-2xl font-bold text-accent mb-6">R$ {product.preco_venda_kg.toFixed(2)}/kg</p>
                       <Button
                         onClick={(e) => {
                           e.preventDefault();
-                          handleWhatsApp(product.name, product.sku);
+                          handleWhatsApp(product.nome, product.sku);
                         }}
                         className="w-full bg-accent hover:bg-accent/90 text-background"
                       >

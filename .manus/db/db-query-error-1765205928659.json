@@ -1,0 +1,10 @@
+{
+  "query": "INSERT INTO settings (key, value, description, updatedAt)\nVALUES ('default_markup', '60', 'Default markup percentage for all products', NOW())\nON DUPLICATE KEY UPDATE value = VALUES(value), updatedAt = NOW()",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2bTEBVUrBZTnxL6.root --database JsQ8GEA7FLWzMRPSiSqGrK --execute INSERT INTO settings (key, value, description, updatedAt)\nVALUES ('default_markup', '60', 'Default markup percentage for all products', NOW())\nON DUPLICATE KEY UPDATE value = VALUES(value), updatedAt = NOW()",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1064 (42000) at line 1: You have an error in your SQL syntax; check the manual that corresponds to your TiDB version for the right syntax to use line 1 column 25 near \"key, value, description, updatedAt)",
+    "VALUES ('default_markup', '60', 'Default markup percentage for all products', NOW())",
+    "ON DUPLICATE KEY UPDATE value = VALUES(value), updatedAt = NOW()\""
+  ]
+}
