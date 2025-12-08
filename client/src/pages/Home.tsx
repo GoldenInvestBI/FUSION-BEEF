@@ -160,12 +160,14 @@ export default function Home() {
                   className="group bg-card border border-border/30 rounded-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:border-accent/50"
                 >
                   {/* Imagem do Produto */}
-                  <div className="relative h-64 bg-black overflow-hidden">
+                  <div className="relative h-64 bg-black overflow-hidden flex items-center justify-center">
                     {product.imagem_url ? (
                       <img
                         src={product.imagem_url}
                         alt={product.nome}
-                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 bg-black"
+                        className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-300"
+                        style={{ imageRendering: 'crisp-edges' }}
+                        loading="lazy"
                         onError={(e) => {
                           (e.target as HTMLImageElement).src = '/images/placeholder.png';
                         }}
@@ -174,7 +176,9 @@ export default function Home() {
                       <img
                         src={`/images/${product.image_filename}`}
                         alt={product.nome}
-                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 bg-black"
+                        className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-300"
+                        style={{ imageRendering: 'crisp-edges' }}
+                        loading="lazy"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-black">
