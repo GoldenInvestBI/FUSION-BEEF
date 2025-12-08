@@ -46,3 +46,15 @@
 - [x] Documentação completa de configuração (CRON_SETUP.md)
 - [x] Sistema de logs automático
 - [x] Limpeza automática de logs antigos
+
+
+## Deploy e GitHub Actions
+- [x] Guardar tokens (Digital Ocean e GitHub) em arquivo seguro
+- [x] Configurar repositório GitHub remoto
+- [x] Push do código para GitHub
+- [x] Criar workflow GitHub Actions para deploy automático
+- [x] Criar documentação completa de configuração (DEPLOY_SETUP.md)
+- [ ] Configurar secrets no repositório GitHub
+- [ ] Configurar chave SSH no servidor Digital Ocean
+- [ ] Executar primeiro deploy via GitHub Actions
+- [ ] Testar deploy automático
