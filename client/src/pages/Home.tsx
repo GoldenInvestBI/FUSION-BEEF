@@ -65,9 +65,14 @@ export default function Home() {
             <img src="/logo_original.jpg" alt="Fusion Beef" className="h-16 w-auto object-contain rounded-full" />
             <span className="text-xl font-bold text-accent">FUSION</span>
           </div>
-          <nav className="flex gap-8">
+          <nav className="flex gap-8 items-center">
             <a href="#produtos" className="text-foreground hover:text-accent transition-colors">Produtos</a>
             <a href="#sobre" className="text-foreground hover:text-accent transition-colors">Sobre</a>
+            <Link href="/admin">
+              <Button variant="outline" size="sm" className="text-accent border-accent/30 hover:bg-accent/10">
+                Admin
+              </Button>
+            </Link>
           </nav>
         </div>
       </header>
