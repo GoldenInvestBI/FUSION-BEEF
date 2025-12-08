@@ -1,0 +1,114 @@
+name: Deploy to Digital Ocean
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+      
+      - name: Install pnpm
+        run: npm install -g pnpm
+      
+      - name: Install dependencies
+        run: pnpm install
+      
+      - name: Build application
+        run: pnpm run build
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          OAUTH_SERVER_URL: ${{ secrets.OAUTH_SERVER_URL }}
+          OWNER_NAME: ${{ secrets.OWNER_NAME }}
+          OWNER_OPEN_ID: ${{ secrets.OWNER_OPEN_ID }}
+          VITE_APP_ID: ${{ secrets.VITE_APP_ID }}
+          VITE_APP_TITLE: ${{ secrets.VITE_APP_TITLE }}
+          VITE_APP_LOGO: ${{ secrets.VITE_APP_LOGO }}
+      
+      - name: Create deployment package
+        run: |
+          tar -czf fusion-beef-deploy.tar.gz \
+            --exclude='node_modules' \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='.manus' \
+            --exclude='*.log' \
+            --exclude='.deploy_token' \
+            --exclude='scripts/scrape_*.py' \
+            dist/ server/ drizzle/ package.json pnpm-lock.yaml
+      
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: unnecessary
+          if_key_exists: replace
+      
+      - name: Add known hosts
+        run: ssh-keyscan -H 159.65.167.133 >> ~/.ssh/known_hosts
+      
+      - name: Deploy to Digital Ocean
+        run: |
+          # Upload deployment package
+          scp fusion-beef-deploy.tar.gz root@159.65.167.133:/tmp/
+          
+          # Execute deployment commands on server
+          ssh root@159.65.167.133 << 'ENDSSH'
+            set -e
+            
+            # Create app directory
+            mkdir -p /var/www/fusion-beef
+            
+            # Backup current version
+            if [ -d "/var/www/fusion-beef/dist" ]; then
+              echo "Creating backup..."
+              tar -czf /var/backups/fusion-beef-$(date +%Y%m%d-%H%M%S).tar.gz -C /var/www/fusion-beef .
+            fi
+            
+            # Extract new version
+            echo "Extracting new version..."
+            tar -xzf /tmp/fusion-beef-deploy.tar.gz -C /var/www/fusion-beef
+            
+            # Install production dependencies
+            cd /var/www/fusion-beef
+            npm install -g pnpm
+            pnpm install --prod
+            
+            # Restart application with PM2
+            if pm2 list | grep -q "fusion-beef"; then
+              echo "Restarting application..."
+              pm2 restart fusion-beef
+            else
+              echo "Starting application..."
+              pm2 start server/index.js --name fusion-beef
+              pm2 save
+            fi
+            
+            # Setup PM2 startup
+            pm2 startup systemd -u root --hp /root
+            
+            echo "Deployment completed successfully!"
+          ENDSSH
+      
+      - name: Verify deployment
+        run: |
+          echo "Waiting for application to start..."
+          sleep 10
+          
+          # Check if application is responding
+          curl -f https://www.fusionbeef.com.br || echo "Warning: Application may not be responding yet"
+      
+      - name: Cleanup
+        run: rm -f fusion-beef-deploy.tar.gz
