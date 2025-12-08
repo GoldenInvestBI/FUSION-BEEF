@@ -13,6 +13,7 @@ echo "=========================================="
 PROJECT_DIR="/var/www/fusion-beef"
 REPO_URL="https://github.com/smartfusionoficial/FUSION-BEEF.git"
 NODE_VERSION="22"
+DB_PASSWORD="DeCastro\$2025#\$\$C"
 
 echo ""
 echo "📍 Passo 1: Verificando Node.js e pnpm..."
@@ -71,9 +72,9 @@ pnpm install --no-frozen-lockfile
 
 echo ""
 echo "📍 Passo 6: Configurando variáveis de ambiente..."
-cat > .env << 'EOF'
+cat > .env << EOF
 # Database
-DATABASE_URL="mysql://root:DeCastro$2025#$$C@localhost:3306/fusion_beef"
+DATABASE_URL="mysql://root:${DB_PASSWORD}@localhost:3306/fusion_beef"
 
 # Server
 NODE_ENV=production
@@ -107,10 +108,12 @@ echo "✅ Arquivo .env criado"
 
 echo ""
 echo "📍 Passo 7: Verificando banco de dados MySQL..."
-if ! mysql -uroot -p'DeCastro$2025#$$C' -e "USE fusion_beef;" 2>/dev/null; then
+if ! mysql -uroot -p"${DB_PASSWORD}" -e "USE fusion_beef;" 2>/dev/null; then
     echo "⚠️  Banco de dados não encontrado. Criando..."
-    mysql -uroot -p'DeCastro$2025#$$C' -e "CREATE DATABASE IF NOT EXISTS fusion_beef CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+    mysql -uroot -p"${DB_PASSWORD}" -e "CREATE DATABASE IF NOT EXISTS fusion_beef CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
     echo "✅ Banco de dados criado"
+else
+    echo "✅ Banco de dados já existe"
 fi
 
 echo ""
@@ -118,11 +121,21 @@ echo "📍 Passo 8: Sincronizando schema do banco de dados..."
 pnpm db:push || echo "⚠️  Aviso: db:push pode ter falhado, mas continuando..."
 
 echo ""
-echo "📍 Passo 9: Fazendo build do projeto..."
+echo "📍 Passo 9: Importando dados dos produtos (46 produtos)..."
+if [ -f "database_seed.sql" ]; then
+    echo "Importando database_seed.sql..."
+    mysql -uroot -p"${DB_PASSWORD}" fusion_beef < database_seed.sql
+    echo "✅ 46 produtos importados com sucesso!"
+else
+    echo "⚠️  Arquivo database_seed.sql não encontrado. Produtos não foram importados."
+fi
+
+echo ""
+echo "📍 Passo 10: Fazendo build do projeto..."
 pnpm build
 
 echo ""
-echo "📍 Passo 10: Verificando build..."
+echo "📍 Passo 11: Verificando build..."
 if [ ! -f "dist/index.js" ]; then
     echo "❌ ERRO: Build falhou! Arquivo dist/index.js não encontrado."
     echo "Conteúdo do diretório dist:"
@@ -132,7 +145,7 @@ fi
 echo "✅ Build concluído com sucesso!"
 
 echo ""
-echo "📍 Passo 11: Configurando PM2..."
+echo "📍 Passo 12: Configurando PM2..."
 if ! command -v pm2 &> /dev/null; then
     echo "Instalando PM2..."
     sudo npm install -g pm2
@@ -151,7 +164,7 @@ pm2 save
 sudo env PATH=$PATH:/usr/bin pm2 startup systemd -u $USER --hp /home/$USER 2>/dev/null || true
 
 echo ""
-echo "📍 Passo 12: Configurando Nginx..."
+echo "📍 Passo 13: Configurando Nginx..."
 
 # Verifica se Nginx está instalado
 if ! command -v nginx &> /dev/null; then
@@ -160,10 +173,10 @@ if ! command -v nginx &> /dev/null; then
     sudo apt-get install -y nginx
 fi
 
-sudo tee /etc/nginx/sites-available/fusion-beef > /dev/null << 'EOF'
+sudo tee /etc/nginx/sites-available/fusion-beef > /dev/null << 'NGINXEOF'
 server {
     listen 80;
-    server_name 159.65.167.133;
+    server_name 159.65.167.133 fusionbeef.com.br www.fusionbeef.com.br;
 
     location / {
         proxy_pass http://localhost:3000;
@@ -177,7 +190,7 @@ server {
         proxy_cache_bypass $http_upgrade;
     }
 }
-EOF
+NGINXEOF
 
 # Ativa site
 sudo ln -sf /etc/nginx/sites-available/fusion-beef /etc/nginx/sites-enabled/
@@ -198,7 +211,14 @@ echo ""
 echo "📊 Status dos serviços:"
 pm2 status
 echo ""
-echo "🌐 Site disponível em: http://159.65.167.133"
+echo "🌐 Site disponível em:"
+echo "  - http://159.65.167.133"
+echo "  - http://fusionbeef.com.br (se DNS configurado)"
+echo ""
+echo "🔐 Acesso Admin:"
+echo "  - URL: http://159.65.167.133/admin"
+echo "  - Usuário: admin"
+echo "  - Senha: fusion2024"
 echo ""
 echo "📝 Comandos úteis:"
 echo "  - Ver logs: pm2 logs fusion-beef"
@@ -210,4 +230,7 @@ echo ""
 echo "🔍 Verificar se está funcionando:"
 echo "  curl http://localhost:3000"
 echo "  curl http://159.65.167.133"
+echo ""
+echo "📦 Total de produtos no banco:"
+mysql -uroot -p"${DB_PASSWORD}" fusion_beef -e "SELECT COUNT(*) as total FROM products WHERE inStock = 1;" 2>/dev/null || echo "  (execute: mysql -uroot -p fusion_beef -e 'SELECT COUNT(*) FROM products;')"
 echo ""
