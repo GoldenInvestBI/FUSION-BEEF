@@ -126,3 +126,10 @@
 - [x] Total no catálogo: 46 produtos
 - [ ] Adicionar chave SSH ao servidor Digital Ocean (manual)
 - [ ] Testar deploy automático via GitHub Actions
+
+
+## Teste de Deploy Automático
+- [ ] Fazer push para o GitHub
+- [ ] Monitorar execução do GitHub Actions
+- [ ] Validar deploy no servidor Digital Ocean
+- [ ] Confirmar site funcionando em produção
