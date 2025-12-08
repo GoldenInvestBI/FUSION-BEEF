@@ -7,6 +7,7 @@ interface Product {
   nome: string;
   preco_venda_kg: number;
   image_filename: string;
+  imagem_url?: string;
 }
 
 /**
@@ -159,15 +160,24 @@ export default function Home() {
                   className="group bg-card border border-border/30 rounded-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:border-accent/50"
                 >
                   {/* Imagem do Produto */}
-                  <div className="relative h-64 bg-secondary/20 overflow-hidden">
-                    {product.image_filename && product.image_filename !== "IMAGEM_INDISPONIVEL.png" ? (
+                  <div className="relative h-64 bg-black overflow-hidden">
+                    {product.imagem_url ? (
+                      <img
+                        src={product.imagem_url}
+                        alt={product.nome}
+                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 bg-black"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = '/images/placeholder.png';
+                        }}
+                      />
+                    ) : product.image_filename && product.image_filename !== "IMAGEM_INDISPONIVEL.png" ? (
                       <img
                         src={`/images/${product.image_filename}`}
                         alt={product.nome}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 bg-black"
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-secondary to-secondary/50">
+                      <div className="w-full h-full flex items-center justify-center bg-black">
                         <span className="text-muted-foreground">Imagem indisponível</span>
                       </div>
                     )}
