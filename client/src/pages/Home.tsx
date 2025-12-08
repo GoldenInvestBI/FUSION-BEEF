@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Search, X } from "lucide-react";
 
 interface Product {
   sku: string;
@@ -20,6 +20,13 @@ export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Filtrar produtos baseado na pesquisa
+  const filteredProducts = products.filter((product) =>
+    product.nome.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    product.sku.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   useEffect(() => {
     // Carregar dados dos produtos
@@ -106,8 +113,47 @@ export default function Home() {
               <p className="text-lg text-muted-foreground">Carregando produtos...</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {products.map((product) => (
+            <>
+              {/* Campo de Pesquisa */}
+              <div className="mb-8 flex items-center gap-2">
+                <div className="relative flex-1 max-w-md">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                  <input
+                    type="text"
+                    placeholder="Pesquisar produtos por nome ou SKU..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full pl-10 pr-10 py-2 rounded-lg border border-border/30 bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
+                  />
+                  {searchQuery && (
+                    <button
+                      onClick={() => setSearchQuery("")}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      <X className="h-5 w-5" />
+                    </button>
+                  )}
+                </div>
+                <span className="text-sm text-muted-foreground ml-4">
+                  {filteredProducts.length} de {products.length} produtos
+                </span>
+              </div>
+
+              {/* Mensagem quando nenhum produto é encontrado */}
+              {filteredProducts.length === 0 ? (
+                <div className="text-center py-12 col-span-full">
+                  <p className="text-lg text-muted-foreground">Nenhum produto encontrado para "{searchQuery}"</p>
+                  <Button
+                    variant="outline"
+                    className="mt-4 border-accent text-accent hover:bg-accent hover:text-accent-foreground"
+                    onClick={() => setSearchQuery("")}
+                  >
+                    Limpar Pesquisa
+                  </Button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 col-span-full">
+                  {filteredProducts.map((product) => (
                 <div
                   key={product.sku}
                   className="group bg-card border border-border/30 rounded-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:border-accent/50"
@@ -161,8 +207,10 @@ export default function Home() {
                     </Button>
                   </div>
                 </div>
-              ))}
-            </div>
+                ))}
+                </div>
+              )}
+            </>
           )}
         </div>
       </section>
