@@ -113,3 +113,16 @@
 
 ## Ajustes de Segurança
 - [ ] Remover dica de senha padrão da tela de login
+
+
+## Novas Tarefas
+- [x] Coletar produtos da categoria Cordeiros (3 em estoque)
+- [x] Coletar produtos da categoria Empanados (5 em estoque)
+- [x] Coletar produtos da categoria Vegetais (categoria vazia)
+- [x] Coletar produtos da categoria Jerked Beef (2 em estoque)
+- [x] Coletar produtos da categoria Azeite (1 em estoque)
+- [x] Coletar produtos da categoria Combos (categoria não existe)
+- [x] Salvar 11 novos produtos no banco de dados
+- [x] Total no catálogo: 46 produtos
+- [ ] Adicionar chave SSH ao servidor Digital Ocean (manual)
+- [ ] Testar deploy automático via GitHub Actions
