@@ -62,7 +62,7 @@ export default function Home() {
 
   const handleWhatsApp = (productName: string, sku: string) => {
     const message = `Olá! Tenho interesse no produto: ${productName} (SKU: ${sku})`;
-    const whatsappUrl = `https://wa.me/5511999999999?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/5527996187603?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
   };
 
@@ -85,7 +85,7 @@ export default function Home() {
       {/* Hero */}
       <section className="relative h-96 bg-gradient-to-b from-background to-background/50 flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <img src="/hero-bg.jpg" alt="" className="w-full h-full object-cover" />
+          <img src="/images/hero-bg.jpg" alt="" className="w-full h-full object-cover" />
         </div>
         <div className="relative z-10 text-center">
           <h1 className="text-5xl font-bold text-accent mb-4">Excelência em Carnes Premium</h1>
@@ -257,7 +257,7 @@ export default function Home() {
             <h3 className="text-2xl font-bold text-accent mb-2">Valckenborgh Borges</h3>
             <p className="text-muted-foreground mb-6">Gerente de Vendas - Fusion Beef</p>
             <Button
-              onClick={() => window.open("https://wa.me/5511999999999", "_blank")}
+              onClick={() => window.open("https://wa.me/5527996187603", "_blank")}
               className="w-full bg-accent hover:bg-accent/90 text-background"
             >
               Enviar Mensagem via WhatsApp
