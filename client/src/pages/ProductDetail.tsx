@@ -136,6 +136,44 @@ export default function ProductDetail() {
               </ul>
             </div>
 
+            {/* Alerta de Estoque */}
+            <div className="bg-card border border-border/30 rounded-lg p-6 mb-6">
+              <h3 className="text-lg font-semibold text-foreground mb-2">Avise-me quando chegar</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Quer ser avisado quando este produto tiver reposição ou promoção?
+              </p>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  const message = `Olá! Gostaria de ser avisado sobre novidades do produto: ${product.nome} (SKU: ${product.sku})`;
+                  window.open(`https://wa.me/5527996187603?text=${encodeURIComponent(message)}`, '_blank');
+                }}
+                className="w-full gap-2"
+              >
+                <MessageCircle className="w-4 h-4" />
+                Receber Alerta via WhatsApp
+              </Button>
+            </div>
+
+            {/* Receitas Sugeridas */}
+            <div className="bg-card border border-border/30 rounded-lg p-6 mb-6">
+              <h3 className="text-lg font-semibold text-foreground mb-4">Sugestão de Preparo</h3>
+              <div className="space-y-4">
+                <div className="flex gap-4 items-start">
+                  <div className="bg-accent/10 p-2 rounded text-accent font-bold">1</div>
+                  <p className="text-sm text-muted-foreground">Tempere com sal grosso 5 minutos antes de levar ao fogo.</p>
+                </div>
+                <div className="flex gap-4 items-start">
+                  <div className="bg-accent/10 p-2 rounded text-accent font-bold">2</div>
+                  <p className="text-sm text-muted-foreground">Sele todos os lados em fogo alto para manter a suculência.</p>
+                </div>
+                <div className="flex gap-4 items-start">
+                  <div className="bg-accent/10 p-2 rounded text-accent font-bold">3</div>
+                  <p className="text-sm text-muted-foreground">Deixe descansar por 3 minutos antes de fatiar.</p>
+                </div>
+              </div>
+            </div>
+
             {/* Ações */}
             <div className="flex gap-3">
               <Button

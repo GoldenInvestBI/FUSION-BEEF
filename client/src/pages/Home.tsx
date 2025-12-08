@@ -72,7 +72,7 @@ export default function Home() {
       <header className="border-b border-border/30 bg-background/95 backdrop-blur-sm sticky top-0 z-50">
         <div className="container py-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src="/logo.svg" alt="Fusion Beef" className="w-12 h-12" />
+            <img src="/logo_original.jpg" alt="Fusion Beef" className="h-16 w-auto object-contain rounded-full" />
             <span className="text-xl font-bold text-accent">FUSION</span>
           </div>
           <nav className="flex gap-8">
